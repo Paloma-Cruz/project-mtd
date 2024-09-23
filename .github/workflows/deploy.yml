@@ -1,0 +1,31 @@
+name: Build and Deploy
+
+# Aciona o workflow em push na branch master
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Verifica o repositório
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Instala dependências
+      - name: Install dependencies
+        run: npm install
+
+      # Roda o build
+      - name: Run build
+        run: npm run build
+
+      # Publica o conteúdo do diretório 'dist' no branch 'deploy'
+      - name: Deploy to branch 'deploy'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: deploy     # Nome da branch de destino
+          folder: dist       # Diretório de saída do build
