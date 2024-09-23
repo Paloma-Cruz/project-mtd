@@ -15,9 +15,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      # Limpa qualquer worktree ou artefato anterior para evitar conflitos
+      - name: Clean up worktree and artifacts
+        run: |
+          git worktree prune
+          rm -rf github-pages-deploy-action-temp-deployment-folder
+          
       # Instala dependências
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps  # Usar --legacy-peer-deps para evitar conflitos de dependências
 
       # Roda o build
       - name: Run build
@@ -29,3 +35,10 @@ jobs:
         with:
           branch: deploy     # Nome da branch de destino
           folder: dist       # Diretório de saída do build
+          clean: true        # Remove arquivos antigos para evitar conflitos
+          
+      # Limpeza final de worktree temporária
+      - name: Final clean up
+        run: |
+          git worktree prune
+          rm -rf github-pages-deploy-action-temp-deployment-folder
