@@ -24,6 +24,13 @@ jobs:
       - name: Build project
         run: npm run build # ou o comando que você usa para build
 
+      - name: Check if dist exists
+        run: |
+          if [ ! -d "dist" ]; then
+            echo "dist directory does not exist."
+            exit 1
+          fi
+
       - name: Move files to deploy branch
         run: |
           git config --global user.name "github-actions"
@@ -32,6 +39,5 @@ jobs:
           rm -rf ./*
           mv dist/* ./
           git add .
-          git commit -m "Deploy: $(date +'%Y-%m-%d %H:%M:%S')"
+          git commit -m "Deploy: $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
           git push origin deploy --force
-
