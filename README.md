@@ -24,6 +24,7 @@ This is a solution to the [Product list with cart challenge on Frontend Mentor](
 
 Users should be able to:
 
+
 - Add items to the cart and remove them
 - Increase/decrease the number of items in the cart
 - See an order confirmation modal when they click "Confirm Order"
