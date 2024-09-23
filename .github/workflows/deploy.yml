@@ -22,12 +22,20 @@ jobs:
         run: npm install
 
       - name: Build project
-        run: npm run build
+        run: npm run build # Certifique-se de que o comando de build está correto
+
+      - name: Verify dist directory
+        run: |
+          if [ ! -d "dist" ]; then
+            echo "dist directory does not exist."
+            exit 1
+          fi
 
       - name: Prepare files from dist for deploy
         run: |
           mkdir -p temp_dist
           cp -r dist/* temp_dist/
+          ls temp_dist
 
       - name: Configure Git user
         run: |
