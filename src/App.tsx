@@ -1,4 +1,4 @@
-import { Routes, Route, Router } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react"
 import './app.scss';
 
@@ -10,11 +10,11 @@ const App: React.FC = () => {
   return (
     <>
     <h1>Olá, mundo!</h1>
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Search />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
     </>
   )
 

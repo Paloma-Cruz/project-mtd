@@ -11,6 +11,7 @@ const Gallery: React.FC = () => {
       .then(data => setData(data))
       .catch(error => console.error("Erro ao carregar os dados:", error));
   }, []);
+  
   return (
     <div className={style.gallery}>
       <h1 className={style.title}>Desserts</h1>
