@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Build project
-        run: npm run build # Certifique-se de que o comando de build está correto
+        run: npm run build
 
       - name: Verify dist directory
         run: |
@@ -35,7 +35,7 @@ jobs:
         run: |
           mkdir -p temp_dist
           cp -r dist/* temp_dist/
-          ls temp_dist
+          ls temp_dist # Exibe o conteúdo da pasta para verificar se os arquivos foram copiados
 
       - name: Configure Git user
         run: |
@@ -54,10 +54,11 @@ jobs:
           git fetch origin
           git checkout deploy || git checkout --orphan deploy
 
-      - name: Move files to deploy branch
+      - name: Clear current branch files, but keep temp_dist
         run: |
-          rm -rf ./*
+          find . -not -path "./temp_dist*" -delete # Exclui todos os arquivos exceto a pasta temp_dist
           mv temp_dist/* ./
+          rmdir temp_dist # Remove a pasta temporária agora que os arquivos foram movidos
           git add .
           git commit -m "Deploy: $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
           git push origin deploy --force
