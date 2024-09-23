@@ -36,8 +36,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [GitHub Repo](https://github.com/Paloma-Cruz/project-mtd)
-- Live Site URL: [GitHub Pages](https://paloma-cruz.github.io/project-mtd/)
+- Solution URL (GitHub Repo): [https://github.com/Paloma-Cruz/project-mtd](https://github.com/Paloma-Cruz/project-mtd)
+- Live Site URL (GitHub Pages): [https://paloma-cruz.github.io/project-mtd/](https://paloma-cruz.github.io/project-mtd/)
 
 ## My process
 
@@ -67,11 +67,11 @@ Users should be able to:
   ```bash
   npm install -g server
   server -s dist
-  ```"
+  ```
 
 ## Author
 
-- Paloma da Cruz
+Paloma da Cruz
 - LinkedIn - [linkedin.com/in/paloma-da-cruz](https://www.linkedin.com/in/paloma-da-cruz/)
 - Email - [palomacruzperes@hotmail.com](mailto:palomacruzperes@hotmail.com)
 - Telefone - [Ligar para +351 937821016](tel:+351937821016)
