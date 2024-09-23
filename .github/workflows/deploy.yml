@@ -5,6 +5,9 @@ on:
     branches:
       - master
 
+permissions:
+  contents: write  # Concede acesso de escrita aos conteúdos do repositório
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,7 +38,7 @@ jobs:
         run: |
           mkdir -p temp_dist
           cp -r dist/* temp_dist/
-          ls temp_dist # Exibe o conteúdo da pasta para verificar se os arquivos foram copiados
+          ls temp_dist
 
       - name: Configure Git user
         run: |
