@@ -1,0 +1,26 @@
+@import "../../utils/vars.scss";
+
+.searchPage {
+    padding: $responsive-80px 0;
+
+    @media only screen and (max-width: $when-tablet-screen) {
+        padding: 40px 0;
+    }
+
+    .galleryAndCart {
+        width: $width-screen;
+        max-width: $max-width-screen;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1fr 30%;
+        gap: $responsive-32px;
+        align-items: flex-start;
+
+        @media only screen and (max-width: $when-tablet-screen) {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+    }
+
+}

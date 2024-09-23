@@ -1,0 +1,35 @@
+@import "../../utils/vars.scss";
+
+.gallery{
+    display: flex;
+    flex-direction: column;
+    gap: $responsive-40px;
+
+    @media only screen and (max-width: $when-tablet-screen){
+       gap: 40px;
+    }
+
+    .title{
+        margin: 0;
+        font-size: $responsive-32px;
+        font-weight: 900;
+        color: $primary;
+
+        @media only screen and (max-width: $when-tablet-screen){
+            font-size: 24px;
+        }
+    }
+
+    .galleryGrid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: $responsive-24px;
+    
+        @media only screen and (max-width: $when-tablet-screen) {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+    
+    }
+}

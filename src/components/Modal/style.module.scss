@@ -1,0 +1,138 @@
+@import "../../utils/vars.scss";
+
+.overlayModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000065;
+
+    .modal {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        max-width: 600px;
+        background-color: $white;
+        padding: calc($responsive-40px + 4px);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        max-height: 695px;
+        overflow: auto;
+
+        .sucessIcon {
+            width: calc($responsive-40px + 2px);
+        }
+
+        .titleModal {
+            font-size: $responsive-40px;
+            color: $primary;
+            margin: $responsive-32px 0 $responsive-16px;
+        }
+
+        .textModal {
+            font-weight: 400;
+            font-size: $responsive-14px;
+            color: $secondary;
+        }
+
+        .productList {
+            background-color: $background;
+            border-radius: 8px 8px 0 0;
+            margin-top: $responsive-24px;
+
+            .productItem {
+                display: flex;
+                padding: $responsive-24px;
+                gap: $responsive-16px;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid #F2F2F2;
+
+                .thumbnail {
+                    width: calc($responsive-40px + $responsive-8px);
+                    border-radius: 4px;
+                }
+
+                .productInfo {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    gap: $responsive-12px;
+
+                    .productName {
+                        font-size: $responsive-12px;
+                        color: $primary;
+                        font-weight: 700;
+                    }
+
+                    .productQuantityAndPriceUnit {
+                        display: flex;
+                        align-items: center;
+                        gap: $responsive-16px;
+
+                        .quantity {
+                            font-size: $responsive-14px;
+                            color: $highlight;
+                            font-weight: 700;
+                        }
+
+                        .pricePerUnit {
+                            font-size: $responsive-12px;
+                            color: $secondary;
+                        }
+                    }
+                }
+
+                .totalPricePerProduct {
+                    font-size: $responsive-14px;
+                    color: $primary;
+                    font-weight: 700;
+                }
+            }
+        }
+
+        .orderTotal {
+            display: flex;
+            padding: $responsive-24px;
+            gap: $responsive-16px;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0 0 8px 8px;
+            background-color: $background;
+            margin-bottom: $responsive-24px;
+
+            .text{
+                font-size: $responsive-12px;
+                color: $secondary;
+                font-weight: 700;
+            }
+
+            .total{
+                font-size: calc($responsive-20px + 2px);
+                color: $primary;
+                font-weight: 700;
+            }
+        }
+
+        .newOrder{
+            min-height: calc($responsive-40px + $responsive-12px);
+            background-color: $highlight;
+            border-radius: 24px;
+            color: $white;
+            font-weight: 700;
+            font-size: $responsive-14px;
+            border: none;
+            cursor: pointer;
+            transition: .3s all;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: $font;
+        }
+    }
+}

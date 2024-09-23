@@ -1,0 +1,36 @@
+// VARIABLE FONTS
+
+$font: "RedHatText", sans-serif;
+
+
+// VARIABLES COLORS
+
+$background: hsl(20, 50%, 98%);
+$primary:  hsl(14, 65%, 9%);
+$secondary: hsl(14, 25%, 72%);
+$highlight: hsl(14, 86%, 42%);
+$white: #ffffff;
+
+
+
+// SCREEN
+
+$width-screen: 90%;
+$max-width-screen: 1280px;
+$when-tablet-screen: 1024px;
+$when-mobile-screen: 768px;
+
+
+
+// RESPONSIVE VALUES
+
+$responsive-8px: clamp(4px, 0.6vw, 8px);
+$responsive-12px: clamp(8px, 0.8vw, 12px);
+$responsive-14px: clamp(10px, 1vw, 14px);
+$responsive-16px: clamp(12px, 1.2vw, 16px);
+$responsive-20px: clamp(16px, 1.4vw, 20px);
+$responsive-24px: clamp(17px, 1.7vw, 24px);
+$responsive-32px: clamp(20px, 2.2vw, 32px);
+$responsive-40px: clamp(28px, 2.8vw, 40px);
+$responsive-80px: clamp(57px, 5.6vw, 80px);
+$responsive-100px: clamp(70px, 7vw, 100px);

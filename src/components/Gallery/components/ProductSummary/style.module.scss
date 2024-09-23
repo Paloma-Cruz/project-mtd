@@ -1,0 +1,202 @@
+@import "../../../../utils/vars.scss";
+
+.containerProduct{
+    .stackProduct{
+        position: relative;
+        padding-bottom: $responsive-40px;
+
+        @media only screen and (max-width: $when-tablet-screen){
+            padding-bottom: 40px;
+        }
+
+        .productImage{
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .productImageSelected{
+            width: 100%;
+            border-radius: 8px;
+            border: 2px solid $highlight;
+            box-sizing: border-box;
+        }
+
+        .addToCart{
+            position: absolute;
+            bottom: $responsive-20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 160px;
+            height: calc($responsive-40px + 4px);
+            border-radius: 24px;
+            border: 1px solid $secondary;
+            font-size: $responsive-14px;
+            color: $primary;
+            font-family: $font;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: $responsive-8px;
+            font-weight: 700;
+            background-color: $background;
+            cursor: pointer;
+            transition: .3s all;
+
+            @media only screen and (max-width: $when-tablet-screen){
+                height: 48px;
+                font-size: 16px;
+                bottom: 16px;
+            }
+
+            &:hover{
+                border: 1px solid $highlight;
+                color: $highlight;
+            }
+
+            .icon{
+                width: $responsive-20px;
+
+                @media only screen and (max-width: $when-tablet-screen){
+                    width: 20px;
+                }
+            }
+        }
+
+        .containerSelectedQuantity{
+            position: absolute;
+            bottom: $responsive-20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 160px;
+            height: calc($responsive-40px + 4px);
+            border-radius: 24px;
+            border: 1px solid $highlight;
+            font-size: $responsive-16px;
+            font-family: $font;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: $responsive-8px;
+            font-weight: 700;
+            background-color: $highlight;
+            padding: 0 $responsive-12px;
+            transition: .3s all;
+            color: $background;
+            box-sizing: border-box;
+
+            @media only screen and (max-width: $when-tablet-screen){
+                height: 48px;
+                font-size: 16px;
+                bottom: 16px;
+            }
+
+            .buttonDecrement{
+                background-color: $highlight;
+                border: none;
+                outline: none;
+                width: calc($responsive-20px - 2px);
+                height: calc($responsive-20px - 2px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 2px solid $background;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: .3s all;
+
+                @media only screen and (max-width: $when-tablet-screen){
+                    width: 24px;
+                    height: 24px;
+                }
+
+                &:hover{
+                    background-color: $background;
+
+                    svg{
+                        color: $highlight;
+                    }
+                }
+
+                svg {
+                    width: $responsive-8px;
+                    color: $background;
+                    transition: .3s all;
+
+                    @media only screen and (max-width: $when-tablet-screen){
+                        width: 8px;
+                    }
+                }
+            }
+
+            .buttonIncrease{
+                background-color: $highlight;
+                border: none;
+                outline: none;
+                width: calc($responsive-20px - 2px);
+                height: calc($responsive-20px - 2px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 2px solid $background;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: .3s all;
+
+                @media only screen and (max-width: $when-tablet-screen){
+                    width: 24px;
+                    height: 24px;
+                }
+
+                &:hover{
+                    background-color: $background;
+
+                    svg{
+                        color: $highlight;
+                    }
+                }
+
+                svg {
+                    width: $responsive-8px;
+                    color: $background;
+                    transition: .3s all;
+
+                    @media only screen and (max-width: $when-tablet-screen){
+                        width: 8px;
+                    }
+                }
+            }
+        }
+    }
+
+    .productCategory{
+        font-size: $responsive-12px;
+        color: $secondary;
+        font-weight: 400;
+
+        @media only screen and (max-width: $when-tablet-screen){
+            font-size: 14px;
+        }
+    }
+
+    .productName{
+        font-size: $responsive-14px;
+        color: $primary;
+        font-weight: 700;
+
+        @media only screen and (max-width: $when-tablet-screen){
+            font-size: 16px;
+        }
+    }
+
+    .productPrice{
+        font-size: $responsive-14px;
+        color: $highlight;
+        font-weight: 700;
+
+        @media only screen and (max-width: $when-tablet-screen){
+            font-size: 16px;
+        }
+    }
+}
