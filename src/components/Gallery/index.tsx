@@ -6,7 +6,7 @@ const Gallery: React.FC = () => {
   const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch('src/data/data.json')
+    fetch('data/data.json')
       .then(response => response.json())
       .then(data => setData(data))
       .catch(error => console.error("Erro ao carregar os dados:", error));
