@@ -8,7 +8,21 @@ const Gallery: React.FC = () => {
   useEffect(() => {
     fetch('data/data.json')
       .then(response => response.json())
-      .then(data => setData(data))
+      .then(data => {
+        // Adiciona a base do Vite aos caminhos das imagens
+        const baseUrl = import.meta.env.BASE_URL; // Obter base URL do Vite
+        const updatedData = data.map((product: any) => {
+          const updatedImages = {
+            ...product.image,
+            thumbnail: `${baseUrl}${product.image.thumbnail}`,
+            mobile: `${baseUrl}${product.image.mobile}`,
+            tablet: `${baseUrl}${product.image.tablet}`,
+            desktop: `${baseUrl}${product.image.desktop}`
+          };
+          return { ...product, image: updatedImages };
+        });
+        setData(updatedData);
+      })
       .catch(error => console.error("Erro ao carregar os dados:", error));
   }, []);
   
@@ -16,7 +30,6 @@ const Gallery: React.FC = () => {
     <div className={style.gallery}>
       <h1 className={style.title}>Desserts</h1>
       <div className={style.galleryGrid}>
-
         {data.map((product: any) => {
           return (
             <ProductSummary
@@ -27,8 +40,7 @@ const Gallery: React.FC = () => {
         })}
       </div>
     </div>
+  );
+};
 
-  )
-}
-
-export default Gallery
+export default Gallery;
