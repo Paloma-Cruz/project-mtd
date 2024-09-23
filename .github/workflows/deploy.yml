@@ -1,6 +1,5 @@
-name: Build and Deploy
+name: Deploy
 
-# Aciona o workflow em push na branch master
 on:
   push:
     branches:
@@ -11,34 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Verifica o repositório
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      # Limpa qualquer worktree ou artefato anterior para evitar conflitos
-      - name: Clean up worktree and artifacts
-        run: |
-          git worktree prune
-          rm -rf github-pages-deploy-action-temp-deployment-folder
-          
-      # Instala dependências
-      - name: Install dependencies
-        run: npm install --legacy-peer-deps  # Usar --legacy-peer-deps para evitar conflitos de dependências
-
-      # Roda o build
-      - name: Run build
-        run: npm run build
-
-      # Publica o conteúdo do diretório 'dist' no branch 'deploy'
-      - name: Deploy to branch 'deploy'
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          branch: deploy     # Nome da branch de destino
-          folder: dist       # Diretório de saída do build
-          clean: true        # Remove arquivos antigos para evitar conflitos
-          
-      # Limpeza final de worktree temporária
-      - name: Final clean up
+          node-version: '14' # ou a versão que você estiver usando
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build # ou o comando que você usa para build
+
+      - name: Move files to deploy branch
         run: |
-          git worktree prune
-          rm -rf github-pages-deploy-action-temp-deployment-folder
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git checkout deploy || git checkout --orphan deploy
+          rm -rf ./*
+          mv dist/* ./
+          git add .
+          git commit -m "Deploy: $(date +'%Y-%m-%d %H:%M:%S')"
+          git push origin deploy --force
+
