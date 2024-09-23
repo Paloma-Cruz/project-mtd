@@ -8,11 +8,14 @@ import Search from "./pages/Search";
 const App: React.FC = () => {
 
   return (
+    <>
+    <h1>Olá, mundo!</h1>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Search />} />
       </Routes>
     </BrowserRouter>
+    </>
   )
 
 }
