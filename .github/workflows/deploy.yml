@@ -54,11 +54,11 @@ jobs:
           git fetch origin
           git checkout deploy || git checkout --orphan deploy
 
-      - name: Clear current branch files, but keep temp_dist
+      - name: Clear current branch files, but keep .git and temp_dist
         run: |
-          find . -not -path "./temp_dist*" -delete # Exclui todos os arquivos exceto a pasta temp_dist
+          find . -mindepth 1 ! -regex '^./\.git.*' ! -regex '^./temp_dist.*' -delete
           mv temp_dist/* ./
-          rmdir temp_dist # Remove a pasta temporária agora que os arquivos foram movidos
+          rmdir temp_dist
           git add .
           git commit -m "Deploy: $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
           git push origin deploy --force
