@@ -4,7 +4,7 @@ import { VitePluginRadar } from 'vite-plugin-radar'
 import sitemapPlugin from 'vite-plugin-sitemap'
 
 export default defineConfig({
-  base: 'project-mtd',
+  base: '/project-mtd/',  // Caminho base para o GitHub Pages
   plugins: [
     react(),
     VitePluginRadar({
