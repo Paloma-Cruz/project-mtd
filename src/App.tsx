@@ -9,7 +9,7 @@ const App: React.FC = () => {
 
   return (
     <>
-    <BrowserRouter>
+    <BrowserRouter basename="/project-mtd/">
       <Routes>
         <Route path="/" element={<Search />} />
       </Routes>
