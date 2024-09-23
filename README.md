@@ -74,4 +74,4 @@ Users should be able to:
 Paloma da Cruz
 - LinkedIn - [linkedin.com/in/paloma-da-cruz](https://www.linkedin.com/in/paloma-da-cruz/)
 - Email - [palomacruzperes@hotmail.com](mailto:palomacruzperes@hotmail.com)
-- Telefone - [Ligar para +351 937821016](tel:+351937821016)
+- Telefone - [+351 937821016](tel:+351937821016)
