@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18' # ou a versão que você estiver usando
+          node-version: '18'
 
       - name: Install dependencies
         run: npm install
@@ -24,20 +24,26 @@ jobs:
       - name: Build project
         run: npm run build # ou o comando que você usa para build
 
-      - name: Check if dist exists
+      - name: Prepare files from dist for deploy
         run: |
-          if [ ! -d "dist" ]; then
-            echo "dist directory does not exist."
-            exit 1
-          fi
+          # Crie uma pasta temporária para armazenar os arquivos de dist
+          mkdir temp_dist
+          cp -r dist/* temp_dist/
 
-      - name: Move files to deploy branch
+      - name: Checkout deploy branch
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
+          git fetch origin
           git checkout deploy || git checkout --orphan deploy
+
+      - name: Move files to deploy branch
+        run: |
+          # Limpe todos os arquivos da branch deploy
           rm -rf ./*
-          mv dist/* ./
+          # Mova os arquivos da pasta temporária para o root da branch deploy
+          mv temp_dist/* ./
+          # Adicione e comite os arquivos para o branch deploy
           git add .
           git commit -m "Deploy: $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
           git push origin deploy --force
