@@ -1,67 +1,51 @@
-name: Deploy
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
 
 on:
+  # Runs on pushes targeting the default branch
   push:
-    branches:
-      - master
+    branches: ['master']
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
 permissions:
-  contents: write  # Concede acesso de escrita aos conteúdos do repositório
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
 
 jobs:
-  build:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
-
+          node-version: 20
+          cache: 'npm'
       - name: Install dependencies
-        run: npm install
-
-      - name: Build project
+        run: npm ci
+      - name: Build
         run: npm run build
-
-      - name: Verify dist directory
-        run: |
-          if [ ! -d "dist" ]; then
-            echo "dist directory does not exist."
-            exit 1
-          fi
-
-      - name: Prepare files from dist for deploy
-        run: |
-          mkdir -p temp_dist
-          cp -r dist/* temp_dist/
-          ls temp_dist
-
-      - name: Configure Git user
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-
-      - name: Stash changes to yarn.lock (if any)
-        run: |
-          if [ -n "$(git status --porcelain)" ]; then
-            git add yarn.lock
-            git commit -m "Stash yarn.lock changes before switching to deploy" || true
-          fi
-
-      - name: Checkout deploy branch
-        run: |
-          git fetch origin
-          git checkout deploy || git checkout --orphan deploy
-
-      - name: Clear current branch files, but keep .git and temp_dist
-        run: |
-          find . -mindepth 1 ! -regex '^./\.git.*' ! -regex '^./temp_dist.*' -delete
-          mv temp_dist/* ./
-          rmdir temp_dist
-          git add .
-          git commit -m "Deploy: $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
-          git push origin deploy --force
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload dist folder
+          path: './dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
