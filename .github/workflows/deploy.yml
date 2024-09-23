@@ -2,13 +2,13 @@ name: Deploy static content to Pages
 
 on:
   push:
-    branches: ['master']  # Use 'master' conforme sua configuração
-  workflow_dispatch:  # Permite execução manual do workflow
+    branches: ['master']  # ou 'main' se for o caso
+  workflow_dispatch:
 
 permissions:
-  contents: write  # Permite gravação no conteúdo do repositório
-  pages: write     # Permite gravação no GitHub Pages
-  id-token: write  # Permite a escrita do token de ID
+  contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: 'pages'
@@ -24,7 +24,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Atualizado para Node.js 20
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
@@ -45,8 +45,10 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './temp_dist'  # Altera o caminho para a pasta temporária
+          path: './temp_dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          branch: 'deploy'  # Especifique a branch se necessário
